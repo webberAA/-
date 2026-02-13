@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闲鱼采集助手</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 闲鱼助手 V7.1.9</h1>
+        </div>
+
+        <!-- 配置项：最多采集、采集页数、并发网页 在同一行 -->
+        <div class="config-row">
+            <label>
+                最多采集:
+                <input type="number" id="maxItems" value="3" min="1" max="1000" style="width: 40px;">
+            </label>
+            <label>
+                采集页数:
+                <input type="number" id="pageCount" value="1" min="1" max="200" style="width: 35px;">
+            </label>
+            <label>
+                并发网页:
+                <input type="number" id="concurrentLimit" value="10" min="1" max="50" style="width: 35px;">
+            </label>
+        </div>
+
+        <!-- 隐藏的配置项（保留用于代码内部使用） -->
+        <input type="number" id="scrolls" value="1" style="display: none;">
+        <input type="number" id="pause" value="0.3" style="display: none;">
+        <input type="number" id="detailDelay" value="0.05" style="display: none;">
+        <!-- 隐藏的文件上传 -->
+        <input type="file" id="csvUpload" accept=".csv,.xlsx,.html" style="display: none;">
+        <!-- 隐藏的详情页采集选项（默认开启） -->
+        <input type="checkbox" id="useDetailPage" checked style="display: none;">
+
+        <div class="checkbox-row"
+            style="display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 10px; flex-wrap: wrap;">
+            <label style="display: flex; align-items: center; gap: 4px; font-size: 13px;">
+                <input type="checkbox" id="autoDownload">
+                自动下载
+            </label>
+            <label style="display: flex; align-items: center; gap: 4px; font-size: 13px;">
+                <input type="checkbox" id="fastMode">
+                ⚡ 快速采集
+            </label>
+            <label style="display: flex; align-items: center; gap: 4px; font-size: 13px;">
+                <input type="checkbox" id="exportHtml">
+                📄 导出HTML
+            </label>
+        </div>
+
+        <!-- 单一按钮：开始/暂停/继续 -->
+        <div class="action-buttons" style="display: block; margin-bottom: 10px;">
+            <button id="mainBtn" class="btn-main">开始采集</button>
+        </div>
+
+        <div class="stats">
+            <span>已采集: <strong id="count">0</strong></span>
+            <span>状态: <strong id="status">就绪</strong></span>
+        </div>
+
+        <div class="log-container">
+            <div id="logArea" class="log-area"></div>
+        </div>
+
+        <div class="footer">
+            <button id="exportBtn" class="btn-secondary" disabled>💾 导出</button>
+            <button id="compareBtn" class="btn-compare">📊 对比</button>
+            <button id="clearBtn" class="btn-secondary">🗑️ 清空</button>
+        </div>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
